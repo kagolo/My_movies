@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+   <div class="main">
+   	 <div class="wrap">
+   	 	<div class="content_top">
+    		<div class="heading">
+				<h3>{{ serie_detail.serie_title }}</h3>
+			</div>
+    		<div class="clear"></div>
+    	</div>
+   	 	<div class="section group">
+				<div class="cont-desc span_1_of_2">
+				  <div class="product-details">				
+					<div class="grid images_3_of_2">
+						<img src="{{ serie_detail.serie_image.url }}" alt="" />
+				  </div>
+				<div class="desc span_3_of_2">
+					<div class="available">
+						<!-- <p>
+							{%if serie_detail.season_set.all %} 
+							{% for season in serie_detail.season_set.all %}
+							<button class="accordion">{{ season.season_name }}</button>
+							{% for episode in season.episode_set.all %}
+							<div class="panel">
+							  <p>{{ episode.episode_name }}</p>
+							</div>
+							{% endfor %} 
+								{% endfor %}
+								{%else%}
+							  <div class="card-body">
+								<h4>No Data available</h4>
+								</div>
+								 {%endif%}  
+						  </p> -->
+
+                          <p>
+							{%if serie_detail.season_set.all %}
+						  <div class="accordion" id="accordionPanelsStayOpenExample">
+							<div class="accordion-item">
+							{% for season in serie_detail.season_set.all %}
+							  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+								<button class="accordion-button btn btn-outline-success" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+									{{ season.season_name }}
+								</button>
+							  </h2>
+							  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+								{% for episode in season.episode_set.all %}
+								<div class="accordion-body">
+								 <a href="{% url 'epis_detail' episode.id %}">{{ episode.episode_name }}</a>
+								</div>
+								{% endfor %} 
+							  </div>
+							{% endfor %}
+							</div>
+						  </div>
+						  {%else%}
+							  <div class="card-body">
+								<h4>No Data available</h4>
+								</div>
+								 {%endif%}  
+						  </p>
+					</div>
+				
+				
+			</div>
+			<div class="clear"></div>
+		  </div>
+		
+   </div>
+   		</div>
+         </div>
+ {% endblock content %}
+

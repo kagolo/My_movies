@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- {% load crispy_forms_tags %}
+{% load widget_tweaks %} -->
+
+{% block content %}
+
+<div class="main">
+    <div class="wrap">
+   <div class="content">
+      <div class="content_top">
+           <div class="heading">
+           <h3 align="center">INDIAN MOVIES</h3>
+           </div>
+      </div>
+      {%if indian_filter %}
+        <div class="section group">
+                {% for indian_filter in indian_filter reversed %}
+                 <div class="grid_1_of_5 images_1_of_5">
+                   <a href="{% url 'mov_detail' indian_filter.id %}"><img src="{{ indian_filter.movie_image.url }}" alt=""  width="100px" height="100px"/></a>
+                   <h2 class="test4"><a href="{% url 'mov_detail' indian_filter.id %}">{{indian_filter.movie_title}}</a></h2>
+                      <div class="price-details">
+                        <div class="price-number">
+                                <p><span class="rupees">FREE</span></p>
+                          </div>
+                                       <div class="add-cart">								
+                                            <h4><a href="{% url 'mov_detail' indian_filter.id %}">{{indian_filter.movie_VJ}}</a></h4>
+                                     </div>
+                                 <div class="clear"></div>
+                      </div>					 
+                 </div>
+                 {% endfor %}
+        </div>
+
+        {%else%}
+                    <div class="card-body">
+                    <h4>No Data available</h4>
+                    </div>
+                {%endif%}
+       
+   </div>
+   </div>
+
+</div>
+
+{% endblock content %}

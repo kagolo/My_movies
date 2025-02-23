@@ -1,0 +1,195 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+    	<div class="wrap">
+				
+		  {%if get_categorys %} 
+                <div class="header_bottom">
+					<div class="header_bottom_left">				
+						<div class="categories">
+						   <ul>
+						  	   <h3>Genre</h3>
+								 <li><a href="{% url 'latest' %}">LATEST MOVIES</a></li>
+								 <li><a href="{% url 'english' %}">ENGLISH MOVIES ONLY</a></li>
+								 <!-- {% for get_categorys in get_categorys %}
+								  <li><a href="{% url 'search_items' %}">{{get_categorys.category_name}}</a></li>
+							     
+								  {% endfor %}  -->
+								  <li><a href="{% url 'actions' %}">SUPER ACTIONS</a></li>
+								  <li><a href="{% url 'action_comedy' %}">ACTION,COMEDY</a></li>
+								  <li><a href="{% url 'romantic_action' %}">ROMANTIC,ACTION</a></li>  
+								  <li><a href="{% url 'action_detective' %}">ACTION,DETECTIVE</a></li>
+								  <li><a href="{% url 'science_friction' %}">SCIENCE FRICTION</a></li>
+								  <li><a href="{% url 'love_story' %}">LOVE STORY</a></li>
+								  <li><a href="{% url 'romantic_comedy' %}">ROMANTIC,COMEDY</a></li>
+								  <li><a href="{% url 'comedy' %}">OTHER COMEDY</a></li>
+								  <li><a href="{% url 'horror' %}">HORROR,THRILLER</a></li>
+								  <li><a href="{% url 'adventure' %}">ADVENTURE</a></li>
+								  <li><a href="{% url 'indian' %}">INDIAN MOVIES</a></li>
+								  <li><a href="{% url 'animitions' %}">CARTOONS/ANIMITIONS</a></li>
+								  <li><a href="{% url 'family_movies' %}">FAMILY MOVIES</a></li>
+						  	 </ul>
+						</div>					
+		  	        </div>
+					   {%else%}
+                    <div class="card-body">
+                    <h4>No Data available</h4>
+                    </div>
+                {%endif%}
+						   
+				{%if get_carousels %} 
+				        <div class="header_bottom_right">					 
+						 	    <!------ Slider ------------>
+								<div class="slider">
+							      	<div class="slider-wrapper theme-default">
+							            <div id="slider" class="nivoSlider">
+											{% for get_carousels in get_carousels %}
+										    <img src="{{get_carousels.carousel_image.url}}" data-thumb="{{get_carousels.carousel_image.url}}" alt="" />
+											<!-- <h2>{{get_carousels.image_name}}</h2> -->
+											{% endfor %}
+											<!-- <img src="{% static 'images/2.jpg' %}" data-thumb="images/2.jpg" alt="" />
+							                <img src="{% static 'images/3.jpg' %}" data-thumb="images/3.jpg" alt="" />
+							                <img src="{% static 'images/4.jpg' %}" data-thumb="images/4.jpg" alt="" />
+							                 <img src="{% static 'images/5.jpg' %}" data-thumb="images/5.jpg" alt="" /> -->
+							            </div>
+							        </div>
+						   		</div>
+							    <!------End Slider ------------>
+			            </div>
+						<!-- <h3 align="center" style=color:brown>Dear Our Beloved Viewers, We Are Expecting A Temperary Technical Upgrade Starting From Sunday,9th,02,2025 During Evening Hours Upto Wednesday 12th,02,2025.<span>THEREFORE SOME CONTENTS WON'T BE VIEWED DUE TO OUR SYSTEM UPGRADE.</span> We Regret For The Inconvieniences Caused.</h3> -->
+						<h3 align="center" style=color:brown>Watch all Movies and Series <span>FREE</span> of charge</h3>
+					 {%else%}
+					 <div class="card-body">
+						 <h4>No Data available</h4>
+					 </div>
+					 {%endif%}
+			    <div class="clear"></div>
+			</div>
+		</div>
+   </div>
+   <!------------End Header ------------>
+   <!-- <h3 align="center" style=color:brown>Watch all Movies <span>FREE</span> of charge, <span>SUBSCRIBE</span> to Watch Series at shs.4500/= per Month,shs.1500/= Weekly,<br>
+     shs.800 Daily and shs.300 a single episode.</h3> -->
+	 <!-- <a href="#" class="btn btn-success">Link Button</a>
+  <button type="button" class="btn btn-success">Button</button>
+  <input type="button" class="btn btn-success" value="Input Button">
+  <input type="submit" class="btn btn-success" value="Submit Button">
+  <input type="reset" class="btn btn-success" value="Reset Button"> -->
+    
+	 <h3 align="center">
+		<a href="{% url 'vj_junior' %}" class="btn btn-secondary">VJ.JUNIOR</a>
+		<a href="{% url 'vj_emmy' %}" class="btn btn-secondary">VJ.EMMY</a>
+		<a href="{% url 'vj_ice_p' %}" class="btn btn-secondary">VJ.ICE.P</a>
+		<a href="{% url 'vj_jingo' %}" class="btn btn-secondary">VJ.JINGO</a>
+		<!-- <a href="#" class="btn btn-secondary">ENGLISH</a> -->
+		<a href="{% url 'other_vjs' %}" class="btn btn-secondary">OTHER VJs</a>
+	</h3>      
+
+  <div class="main">
+  	<div class="wrap">
+      <div class="content">
+    	<div class="content_top">
+    		<div class="heading">
+    		<h3 align="center">ALL MOVIES</h3>
+    		</div>   
+    	</div>
+		<br>
+		{%if  get_moviy_title_filter %}
+		<form method="get">
+
+			{% for field in  get_moviy_title_filter.form.visible_fields %}
+      <div class="form-group">
+     
+		{% render_field get_moviy_title_filter.form.movie_title class="form-control" placeholder="Enter Movie Title" %}
+      
+        {% for error in field.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    {% endfor %}
+	<div class="form-group">
+		<button type="submit" class="btn btn-success">
+		  <span class="glyphicon glyphicon-ok"></span> Search
+		</button>
+		
+	  </div>
+			<!-- <button type="submit">Search</button> -->
+		  </form>
+	        <div class="section group">
+				
+				{% for user_filter in user_filter.qs reversed %}
+				<div class="grid_1_of_5 images_1_of_5">
+					<a href="{% url 'mov_detail' user_filter.id %}"><img src="{{ user_filter.movie_image.url }}" alt=""/></a>
+					 <h2 class="test4"><a href="{% url 'mov_detail' user_filter.id %}">{{user_filter.movie_title}}</a></h2>
+					<div class="price-details">
+				       <div class="price-number">
+						   <p><span class="rupees">{{user_filter.movie_release_year}}</span></p>
+							<!-- <p><span class="rupees">COST : {{user_filter.movie_cost}}</span></p> -->
+					    </div> 
+					
+						<!-- <div class="price-number">
+							<p><span class="rupees">{{user_filter.movie_release_date}}</span></p>
+					    </div> -->
+					       		<div class="add-cart">								
+									<h4><a href="{% url 'mov_detail' user_filter.id %}">{{user_filter.movie_VJ}}</a></h4>
+							     </div>
+							 <div class="clear"></div>
+					</div>
+										 
+				</div>
+				{% endfor %}
+			</div>
+			
+				{%else%}
+                <div class="card-body">
+                    <h4>No Data available</h4>
+                </div>
+                {%endif%}
+				
+				
+			{%if get_seriys %}
+			<div class="content_bottom">
+    		<div class="heading">
+    		<h3 align="center">ALL SERIES</h3>
+    		</div>
+    	  </div>
+		  <br>
+		  <a class="btn btn-success" href="{% url 'search_serie_items' %}" role="button">
+			<span class="glyphicon glyphicon-ok"></span> Search</a>
+		  </button>
+			<div class="section group">
+				{% for get_seriys in get_seriys reversed %}
+				<div class="grid_1_of_5 images_1_of_5">
+					 <a href="{% url 'seri_detail' get_seriys.id %}"><img src="{{ get_seriys.serie_image.url }}" alt="" /></a>
+					 <h2 class="test4"><a href="{% url 'seri_detail' get_seriys.id %}">{{get_seriys.serie_title}}</a></h2>
+					<div class="price-details">
+				       <div class="price-number">
+							<!-- <p><span class="rupees">{{get_seriys.serie_cost}}</span></p> -->
+							<p><span class="rupees">FREE</span></p>
+					    </div>
+					       		<div class="add-cart">								
+									<h4><a href="{% url 'seri_detail' get_seriys.id %}">{{get_seriys.serie_VJ}}</a></h4>
+							     </div>
+							 <div class="clear"></div>
+					</div>
+					 
+				</div>
+				{% endfor %}
+			</div>
+			{%else%}
+                <div class="card-body">
+                    <h4>No Data available</h4>
+                </div>
+                {%endif%}
+       </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+

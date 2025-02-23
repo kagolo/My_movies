@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+
+<center>
+    <h3>SUBSCRIBE NOW!</h3>
+    <br>
+    <br>
+<form name="JPesa" method="post" action="https://my.jpesa.com/?dad=xp">
+    <input type="hidden" name="ownerid" value="kagolo.usama"  />
+    <input type="hidden" name="description" value="Credit Note" />
+    <input type="hidden" name="return" value="https://my.jpesa.com" />
+    <input type="hidden" name="cancel" value="https://my.jpesa.com" />
+    <select name="cur">
+      <option value="UGX">UGX</option>
+      <option value="KES">KES</option>
+      <option value="USD">USD</option>
+    </select>
+    <input name="amount" type="text" size="15" value="500" />
+    <input type="submit" name="pay" value="Make Payment" />
+    </form>
+</center>
+<br>
+<br>
+
+<!-- <center>
+
+<form>
+
+    <script scr="https://my.jpesa.com/?dad=xp"></script>
+    <button type="button"  onclick="makePayment()">Pay Now</button>
+</form>
+
+<script>
+    function makePayment(){ 
+        my.jpesa.com({
+            public_key: "2B41A3ABF1DD566422DAFA56127EEBB5",
+            tx_ref: "ukm108808",
+            amount: 500,
+            currency: "UGX",
+            country: "UG",
+            payment_options: " ",
+            redirect_url: "",
+            meta: {
+                ownerid: "kagolo.usama",
+                owner_mac: "92a3-912ba-1192a",
+            },
+            customer: {
+                email: "[usamakagolo@gmail.com]",
+                phone_number: "0704544125",
+                name: "kagolo usama",
+            },
+            callback: function(data) {
+                console.log(data) 
+            },
+            onclose: function(){
+                // close model
+            },
+            customizations: {
+                title: "Movies",
+                description: "Payment for movie", 
+            },
+        });
+    }
+    
+</script>    
+</center> -->
+
+{% endblock content %}

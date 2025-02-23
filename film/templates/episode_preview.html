@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main">
+	<div class="wrap">
+		<div class="content_top">
+		<div class="heading">
+			<h3>{{ episode_detail.episode_name }} ({{ episode_detail.season.serie.serie_VJ}})</h3>
+		</div>  
+		<div class="clear"></div>
+			
+	</div>
+		<div class="section group">     
+			<div class="cont-desc span_1_of_2">
+			  <div class="product-details">				
+				
+			<div class="desc span_3_of_2">
+				<div class="embed-responsive embed-responsive-16by9"> 
+					<p> <video
+					id="my-video"
+					class="video-js"
+					controls
+					preload="auto"
+					width="320"
+					height="240"
+					poster="{{ episode_detail.season.serie.serie_image.url }}"
+					data-setup="{}"
+				  >
+					<source src="{{ episode_detail.episode_video.url }}" type="video/mp4" />
+					</video></p>
+				</div>	
+				
+				<!-- <br>
+					<div class="card">
+						<button > <a href="{% url 'download_episode' episode_detail.id %}">Download</a></button>
+					</div> -->
+			 
+		</div>
+		<div class="clear"></div>
+	  </div>
+	
+	  <div class="product_desc">	
+		<h2>Details :</h2>
+		  <p>{{ episode_detail.description }}</p>
+		  
+      </div>
+</div>
+</div>
+	</div>
+ {% endblock content %}

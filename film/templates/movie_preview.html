@@ -1,0 +1,194 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+<style>
+    .card{
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        border: 1px dashed black;
+        padding: 1rem;
+        margin-top: 10px;
+    }
+
+    button{
+        padding : 5px 5px;
+        color: green;
+    } 
+    a{text-decoration:none; color: inherit;}
+</style>
+{% block content %}
+
+   <div class="main">
+   	 <div class="wrap">
+   	 	<div class="content_top">
+			<div class="heading">
+				<h2><a href="{% url 'mov_sub_detail' movie_detail.id %}">{{ movie_detail.movie_title }} ({{ movie_detail.movie_release_year }} - {{ movie_detail.movie_VJ }})</a></h2>
+			</div>  
+    		<div class="clear"></div>
+				
+    	</div>
+		<div class="section group">  
+			
+			<div class="product-details">				
+				<div class="grid images_3_of_2">
+					<div class="embed-responsive embed-responsive-16by9"> 
+						<p> <video
+						id="my-video"
+						class="video-js"
+						controls
+						preload="auto"
+						width="320"
+						height="240"
+						poster="{{ movie_detail.movie_image.url }}"
+						data-setup="{}"
+					  >
+						<source src="{{ movie_detail.movie_video.url }}" type="video/mp4" />
+						</video></p>
+					</div>	
+
+					<br>
+					<div class="card">
+						<!-- <h2>{{movie_detail.movie_title}}</h2> -->
+						<button > <a href="{% url 'download_movie' movie_detail.id %}">Download</a></button>
+					</div>
+					
+			
+
+
+			  </div>
+         
+			  <div class="desc span_3_of_2">
+				<h2>Actors </h2>
+				<p>{{ movie_detail.movie_actor }}</p>
+				<br>
+				<h2>Director </h2>
+				<p>{{ movie_detail.movie_director }}</p>
+				<br>
+				<h2>Genre </h2>
+				<p>{{ movie_detail.movie_genre }}</p>					
+				<div class="price">
+					<p>Price: <span>{{ movie_detail.movie_status2 }}</span></p>
+				</div>
+				<div class="available">
+					<ul>
+					  <li><span>Status:</span> &nbsp; {{ movie_detail.movie_status1 }}</li>
+					  <li><span>Upload date:</span>&nbsp; {{ movie_detail.movie_release_date }}</li>
+					  <li><span>Size:</span>&nbsp; {{ movie_detail.file_size }}</li>
+					</ul>
+				</div>
+			<div class="share-desc">
+				
+				<div class="button"><span><a href="#">Translator : {{ movie_detail.movie_VJ }}</a></span></div>					
+				<div class="clear"></div>
+			</div>
+			 <!-- <div class="wish-list">
+				 <ul>
+					 <li class="wish"><a href="#">Add to Wishlist</a></li>
+					 <li class="compare"><a href="#">Add to Compare</a></li>
+				 </ul>
+			 </div> -->
+		</div>
+		<div class="clear"></div>
+
+
+			
+			<!-- <div class="cont-desc span_1_of_2">
+			  <div class="product-details">				
+				
+			<div class="desc span_3_of_2">
+				<div class="embed-responsive embed-responsive-16by9"> 
+					<p> <video
+					id="my-video"
+					class="video-js"
+					controls
+					preload="auto"
+					width="320"
+					height="240"
+					poster="{{ movie_detail.movie_image.url }}"
+					data-setup="{}"
+				  >
+					<source src="{{ movie_detail.movie_video.url }}" type="video/mp4" />
+					</video></p>
+				</div>	
+				<div class="desc span_3_of_2">
+					<h2>Actors </h2>
+					<p>{{ movie_detail.movie_actor }}</p>
+										
+					<div class="price">
+						<p><span>Translator : </span><strong>{{ movie_detail.movie_VJ }}</strong></p>
+						<p><span>Price : </span><strong>{{ movie_detail.movie_status2 }}</strong></p>
+					</div>
+				</div>	
+			 
+		</div>
+			<div class="clear"></div>
+		  </div> -->
+
+		  <div class="product_desc">	
+			<h2>Details :</h2>
+			  <p>{{ movie_detail.movie_description }}</p>
+			  
+	  </div>
+		
+   </div>
+</div>
+        </div>
+
+
+
+
+
+		<!-- <div class="main">
+			<div class="wrap">
+				<div class="content_top">
+					<div class="desc span_3_of_2">
+						<a href="{% url 'mov_sub_detail' movie_detail.id %}"><h2>{{ movie_detail.movie_title }}</h2></a>
+					</div>
+				<div class="clear"></div>
+			</div>
+				<div class="section group">
+					<div class="cont-desc span_1_of_2">
+					  <div class="product-details">				
+						<div class="grid images_3_of_2">
+							<img src="{{ movie_detail.movie_image.url }}" alt=""  width="100px" height="100px"/>
+					  </div>
+					<div class="desc span_3_of_2">
+						<h2>Actors </h2>
+						<p>{{ movie_detail.movie_actor }}</p>
+						<p><span>Tranlator : </span><strong>{{ movie_detail.movie_VJ }}</strong></p>					
+						<div class="price">
+							<p><strong>Price: </strong><span>UGX500</span></p>
+						</div>
+						<div class="available">
+							<form name="JPesa" method="post" action="https://my.jpesa.com/?dad=xp">
+								<input type="hidden" name="ownerid" value="kagolo.usama"  />
+								<input type="hidden" name="description" value="Credit Note" />
+								<input type="hidden" name="return" value="http://127.0.0.1:8000/Sub_payment" />
+								<input type="hidden" name="cancel" value="https://my.jpesa.com" />
+								<select name="cur">
+								  <option value="UGX">UGX</option>
+								  <option value="KES">KES</option>
+								  <option value="USD">USD</option>
+								</select>
+								<input name="amount" type="text" size="10" value="500" />
+								<input type="submit" name="pay" value="Make Payment" />
+								</form>
+						</div>
+					
+					
+				</div>
+				<div class="clear"></div>
+			  </div>
+			<div class="product_desc">	
+				 <h2>Details :</h2>
+				   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+				   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+		   </div>
+	   </div>
+					
+					</div>
+			</div> -->
+		
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- {% load crispy_forms_tags %}
+{% load widget_tweaks %} -->
+
+{% block content %}
+<div class="content_top">
+    <div class="heading">
+    <h3 align="center"> ENGLISH SERIES</h3>
+    </div>   
+</div>
+<br>
+
+<div class="section group">
+    {% for english_series_filter in english_series_filter reversed %}
+    <div class="grid_1_of_5 images_1_of_5">
+         <a href="{% url 'seri_detail' english_series_filter.id %}"><img src="{{ english_series_filter.serie_image.url }}" alt="" /></a>
+	     <h2 class="test4"><a href="{% url 'seri_detail' english_series_filter.id %}">{{english_series_filter.serie_title}}</a></h2>
+       <div class="price-details">
+             <div class="price-number">
+                  <p><span class="rupees">{{english_series_filter.movie_release_year}}</span></p>
+                  <!-- <p><span class="rupees">COST : {{english_series_filter.serie_cost}}</span></p> -->
+             </div> 
+     
+         <!-- <div class="price-number">
+             <p><span class="rupees">{{english_series_filter.serie_release_date}}</span></p>
+         </div> -->
+                    <div class="add-cart">								
+                     <h4><a href="{% url 'seri_detail' english_series_filter.id %}">{{english_series_filter.serie_VJ}}</a></h4>
+                    </div>
+              <div class="clear"></div>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+{% endblock content %}

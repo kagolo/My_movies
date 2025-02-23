@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<h3 align="center">DOWNLOAD ANDROID APP FOR UKMOVIESUG</h3> 
+<br>
+
+<p align="center">
+    <img src="{% static 'images/android_img.jpg' %}" alt="">
+    <br>
+    <a href="{% static 'images/ukmoviesug.com_android.apk' %}" download>
+    <button class="btndl"> DOWNLOAD APP</button>
+    </a>
+</p>
+<br>
+ <div class="product_desc">	
+    <h2>Download and installation instructions for Android</h2>
+      <p><ul>
+       <li> 1. Click the Download App button, this will download the app on your device</li>
+       <li> 2. After the download completes, tap install the app on your device</li>
+       <li> 3. Now open the installed App</li> 
+        </ul>
+        <br>
+        <strong>Note:</strong> Before you install the App, please ensure the <strong>"Unknown Sources"</strong> box is checked to allow installation of a non-market application.
+      </p>
+      <br>
+      <p></p>
+      
+ </div>
+
+{% endblock content %}
