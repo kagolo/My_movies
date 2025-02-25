@@ -24,9 +24,9 @@ SECRET_KEY = 'django-insecure-@w97y0euzvz0m790@zn5g=)&*@qg_h1u^)*zx7rvts)e*@1d@8
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS =['ukmoviesug.com']
+# ALLOWED_HOSTS =['ukmoviesug.com']
 
-# ALLOWED_HOSTS =[]
+ALLOWED_HOSTS =[]
 # ALLOWED_HOSTS =['3.21.43.173','*']
 # ALLOWED_HOSTS =['41.210.145.158','*']
 # ALLOWED_HOSTS =['197.239.12.92','*']
